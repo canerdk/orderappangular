@@ -9,6 +9,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {Service} from "./Services/service";
 import { CategoryComponent } from './Pages/category/category.component';
 import { ProductComponent } from './Pages/product/product.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientModule} from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { ProductComponent } from './Pages/product/product.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    NgbModule,
+    HttpClientModule
   ],
   providers: [Service],
   bootstrap: [AppComponent]
