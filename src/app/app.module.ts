@@ -11,6 +11,7 @@ import { CategoryComponent } from './Pages/category/category.component';
 import { ProductComponent } from './Pages/product/product.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from "@angular/common/http";
+import {CartService} from "./Services/cart.service";
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import {HttpClientModule} from "@angular/common/http";
     NgbModule,
     HttpClientModule
   ],
-  providers: [Service],
+  providers: [Service, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

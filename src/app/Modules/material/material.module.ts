@@ -9,6 +9,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
+import {MatMenuModule} from "@angular/material/menu";
 
 const MaterialComponents = [
   MatButtonModule,
@@ -19,7 +20,8 @@ const MaterialComponents = [
   MatInputModule,
   MatDialogModule,
   MatAutocompleteModule,
-  MatSelectModule
+  MatSelectModule,
+  MatMenuModule
 ];
 
 @NgModule({
