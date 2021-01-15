@@ -10,6 +10,11 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
+import {MatListModule} from "@angular/material/list";
+import {ClipboardModule} from "@angular/cdk/clipboard";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatBadgeModule} from "@angular/material/badge";
 
 const MaterialComponents = [
   MatButtonModule,
@@ -21,7 +26,12 @@ const MaterialComponents = [
   MatDialogModule,
   MatAutocompleteModule,
   MatSelectModule,
-  MatMenuModule
+  MatMenuModule,
+  MatListModule,
+  MatCheckboxModule,
+  MatGridListModule,
+  ClipboardModule,
+  MatBadgeModule
 ];
 
 @NgModule({

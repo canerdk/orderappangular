@@ -12,6 +12,8 @@ import { ProductComponent } from './Pages/product/product.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from "@angular/common/http";
 import {CartService} from "./Services/cart.service";
+import { OrderdialogComponent } from './Dialogs/orderdialog/orderdialog.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import {CartService} from "./Services/cart.service";
     AppComponent,
     HomeComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
+    OrderdialogComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,9 @@ import {CartService} from "./Services/cart.service";
     BrowserAnimationsModule,
     MaterialModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [Service, CartService],
   bootstrap: [AppComponent]

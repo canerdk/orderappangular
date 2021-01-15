@@ -35,7 +35,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4" *ngFor="let p of product">
-        <mat-card class="mb-3" >
+        <mat-card class="mb-3 proCard" >
           <div class="row">
             <div class="col-6 lineheight">{{p.name}}</div>
             <div class="col-3 lineheight">{{p.price}} TL</div>
@@ -52,19 +52,19 @@
 
   <footer class="footer">
 
-    <!--<mat-toolbar>
+    <mat-toolbar>
       <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon"
-              aria-label="Example icon-button with share icon" matBadge="{{tasks.length}}" matBadgePosition="above"
-              matBadgeColor="accent" *ngIf="tasks.length !== 0">
+              aria-label="Example icon-button with share icon" matBadge="{{cartItems.length}}" matBadgePosition="above"
+              matBadgeColor="accent" *ngIf="cartItems.length !== 0">
         <mat-icon>shopping_cart</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
-        <mat-card class="example-card mb-2" *ngFor="let c of tasks">
+      <mat-menu #menu="matMenu" class="matmenu">
+        <mat-card class="example-card mb-2" *ngFor="let c of cartItems">
           <mat-card-content>
             <div class="container">
               <div class="row">
                 <div class="col-9">
-                  <p>{{c.Quantity}}x {{c.Name}}</p>
+                  <p>{{c.quantity}}x {{c.name}}</p>
                 </div>
                 <div class="col-3">
                   <a class="delete"  (click)="deleteTask(c)">
@@ -84,7 +84,7 @@
 
 
       </mat-menu>
-    </mat-toolbar>-->
+    </mat-toolbar>
   </footer>
 
 </section>
