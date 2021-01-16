@@ -14,6 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {CartService} from "./Services/cart.service";
 import { OrderdialogComponent } from './Dialogs/orderdialog/orderdialog.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CartComponent } from './Pages/cart/cart.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HomeComponent,
     CategoryComponent,
     ProductComponent,
-    OrderdialogComponent
+    OrderdialogComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

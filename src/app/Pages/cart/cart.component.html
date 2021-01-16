@@ -1,0 +1,103 @@
+<section class="product">
+  <div>
+    <mat-toolbar color="primary" class="mb-3">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>shopping_basket</mat-icon>
+      </button>
+      <span>Alıveriş Sepeti</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar>
+  </div>
+
+  <div class="container">
+    <table class="table table-hover">
+      <thead class="text-center">
+      <tr>
+        <th scope="col">Ürün</th>
+        <th scope="col">Fiyat</th>
+        <th scope="col">Adet</th>
+        <th scope="col">Toplam</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let p of products" class="text-center">
+      <tr>
+        <td>
+          {{p.name}}
+        </td>
+        <td>
+          {{p.price}} TL
+        </td>
+        <td>{{p.quantity}} </td>
+        <td class="text-right">{{p.price * p.quantity}} TL</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td class="text-right" colspan="4">Sepet Toplam: <b>{{sum}}</b> TL </td>
+      </tr>
+      </tfoot>
+    </table>
+    <div>
+      <button class="btn-block" mat-raised-button color="warn" routerLink="/category">Ürün ekle</button>
+    </div>
+  </div>
+
+
+  <div class="container mt-3">
+
+    <form class="example-form getaddress">
+      <mat-form-field class="example-full-width">
+        <mat-label>İsim</mat-label>
+        <input matInput name="name" [(ngModel)]="name">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Telefon</mat-label>
+        <span matPrefix>+90 &nbsp;</span>
+        <input type="tel" [(ngModel)]="phone" matInput  maxlength="10" name="phone" >
+      </mat-form-field>
+
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Mahalle</mat-label>
+          <input [(ngModel)]="neighborhood" matInput name="neighbor">
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Cadde</mat-label>
+          <input [(ngModel)]="avenue" matInput name="avenue">
+        </mat-form-field></td>
+      </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Sokak</mat-label>
+          <input [(ngModel)]="street" matInput name="street">
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <mat-label>Apt. No</mat-label>
+          <input [(ngModel)]="no" matInput name="no" >
+        </mat-form-field></td>
+      </tr></table>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Semt</mat-label>
+        <input matInput name="district" readonly value="Çankaya" >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Notunuz</mat-label>
+        <textarea matInput placeholder="Belirtmek istedikleriniz"></textarea>
+      </mat-form-field>
+    </form>
+
+    <div>
+      <button class="btn-block mt-3" *ngIf="sum !== 0" (click)="confirm()" mat-raised-button color="primary">
+        Sipariş Ver
+      </button>
+      <div class="alert alert-danger" *ngIf="sum === 0">
+        <h4 class="text-center m-0">Lütfen sepetinize ürün ekleyiniz.</h4>
+      </div>
+    </div>
+
+  </div>
+
+
+</section>

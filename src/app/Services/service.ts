@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Category} from "../Models/Category";
 import {Product} from "../Models/Product";
+import {Address} from "../Models/Address";
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,12 @@ export class Service {
       'Content-Type': 'application/json'
     });
     return await this.http.get<Product[]>(this.BASE_URL + 'products/getbyid?categoryId=' + id, {headers}).toPromise();
+  }
+
+  async postAddress(address){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return await this.http.post<Address[]>(this.BASE_URL + 'address', address,{headers}).toPromise();
   }
 }
