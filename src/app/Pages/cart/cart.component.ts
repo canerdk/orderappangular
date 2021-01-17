@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {CartService} from "../../Services/cart.service";
 import {Service} from "../../Services/service";
 import {formatDate} from "@angular/common";
+import {ToastrService} from "ngx-toastr";
+import {FormBuilder, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,22 +16,30 @@ export class CartComponent implements OnInit {
   products: any;
   cartTotal: any = [];
   sum: any;
-  name: any;
-  street: any;
-  avenue: any;
-  neighborhood: any;
-  district: string = 'Çankaya';
-  city: string = 'Ankara';
-  phone: any;
-  note: any;
-  no: any;
+
+  orderForm = this.fb.group({
+    name: ['', [Validators.required]],
+    street: ['', [Validators.required]],
+    avenue: ['', [Validators.required]],
+    neighborhood: ['', [Validators.required]],
+    district: ['Çankaya'],
+    city: ['Ankara'],
+    phone: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+    note: [''],
+    no: ['', [Validators.required]],
+  });
+  result: any;
+
   address: any;
   datetime: any;
   orders: any;
 
 
   constructor(private cartService: CartService,
-              private service: Service) { }
+              private service: Service,
+              private toastr: ToastrService,
+              private fb: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.products = this.cartService.getOrders();
@@ -39,7 +50,7 @@ export class CartComponent implements OnInit {
     this.datetime = formatDate(new Date(), 'dd/MM/yyy HH:mm', 'en');
   }
 
-  confirm(){
+  confirm() {
     this.addWithoutLoginUser();
   }
 
@@ -48,41 +59,56 @@ export class CartComponent implements OnInit {
   }
 
   addWithoutLoginUser(){
-    const obj = {
-      street: this.street,
-      avenue: this.avenue,
-      neighborhood: this.neighborhood,
-      no: this.no,
-      city: this.city,
-      district: this.district
-    }
-    this.service.postAddress(obj).then((data) => {
-      this.address = data;
+    if (this.orderForm.valid){
+      this.result = Object.assign({}, this.orderForm.value);
       const obj = {
-        name: this.name,
-        phone: this.phone,
-        createdDate: this.datetime,
-        ipAddress: 'asdasd',
-        status: 1,
-        note: this.note,
-        addressId: this.address.id
+        street: this.result.street,
+        avenue: this.result.avenue,
+        neighborhood: this.result.neighborhood,
+        no: this.result.no,
+        city: this.result.city,
+        district: this.result.district
       }
-      this.service.postOrder(obj).then((data) => {
-        this.orders = data;
-        console.log(this.orders)
-        for (let p of this.products){
-          const obj = {
-            name: p.name,
-            price: p.price,
-            quantity: p.quantity,
-            orderId: this.orders.id
-          }
-          this.service.postOrderDetail(obj).then((data) => {
-            console.log(data);
-          })
+      this.service.postAddress(obj).then((data) => {
+        this.address = data;
+        const obj = {
+          name: this.result.name,
+          phone: this.result.phone,
+          createdDate: this.datetime,
+          ipAddress: 'asdasd',
+          status: 1,
+          note: this.result.note,
+          addressId: this.address.id
         }
+        this.service.postOrder(obj).then((data) => {
+          this.orders = data;
+          for (let p of this.products){
+            const obj = {
+              name: p.name,
+              price: p.price,
+              quantity: p.quantity,
+              orderId: this.orders.id
+            }
+            this.service.postOrderDetail(obj).then((data) => {
+
+            });
+          }
+        });
+        this.showMsg();
+        this.orderForm.reset();
+        localStorage.removeItem('orders');
+        this.ngOnInit();
+        setTimeout(() => {
+          this.router.navigate(['/category']);
+        }, 2000);
       });
-    });
+    }else{
+      this.toastr.warning('Lütfen formdaki kırmızı alanları uygun bir şekilde doldurunuz.');
+    }
+  }
+
+  showMsg(){
+    this.toastr.success('Siparişiniz başarıyla verildi, teşekkür ederiz.');
   }
 
 }

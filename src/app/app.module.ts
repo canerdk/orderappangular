@@ -15,6 +15,7 @@ import {CartService} from "./Services/cart.service";
 import { OrderdialogComponent } from './Dialogs/orderdialog/orderdialog.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CartComponent } from './Pages/cart/cart.component';
+import {ToastrModule} from "ngx-toastr";
 
 
 @NgModule({
@@ -34,7 +35,13 @@ import { CartComponent } from './Pages/cart/cart.component';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      progressAnimation: "increasing",
+      preventDuplicates: true,
+      positionClass: "toast-top-full-width",
+    })
   ],
   providers: [Service, CartService],
   bootstrap: [AppComponent]
