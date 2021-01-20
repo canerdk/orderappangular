@@ -56,7 +56,12 @@
         <input type="tel" matInput  maxlength="10" name="phone" formControlName="phone">
       </mat-form-field>
 
-      <table class="example-full-width" cellspacing="0"><tr>
+      <mat-form-field class="example-full-width">
+        <mat-label>Adresiniz</mat-label>
+        <textarea matInput placeholder="Adresiniz" formControlName="address" rows="7"></textarea>
+      </mat-form-field>
+
+      <!--<table class="example-full-width" cellspacing="0"><tr>
         <td><mat-form-field class="example-full-width">
           <mat-label>Mahalle</mat-label>
           <mat-select formControlName="neighborhood">
@@ -82,7 +87,7 @@
       <mat-form-field class="example-full-width">
         <mat-label>Semt</mat-label>
         <input matInput name="district" readonly value="Çankaya" formControlName="district">
-      </mat-form-field>
+      </mat-form-field>-->
 
       <mat-form-field class="example-full-width">
         <mat-label>Notunuz</mat-label>

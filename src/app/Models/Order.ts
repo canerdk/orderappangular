@@ -6,5 +6,5 @@ export interface Order {
   ipAddress?: any;
   status: number;
   note: string;
-  addressId: string;
+  address: string;
 }

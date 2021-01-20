@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {CartService} from "../../Services/cart.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-orderdialog',
@@ -14,7 +15,8 @@ export class OrderdialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<OrderdialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public addCart: CartService) {
+              public addCart: CartService,
+              private toastr: ToastrService) {
     this.product = data;
   }
 
@@ -35,9 +37,13 @@ export class OrderdialogComponent implements OnInit {
           quantity: this.quantity
         };
         this.addCart.addOrder(obj);
-        // this.showToast(obj.Quantity, obj.Name);
+        this.showToast(obj.quantity, obj.name);
       }
     });
+  }
+
+  showToast(qt, name){
+    this.toastr.success(qt + ' adet ' + name + ' eklendi');
   }
 
 }

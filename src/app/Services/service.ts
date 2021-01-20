@@ -14,6 +14,11 @@ export class Service {
 
   constructor(private http: HttpClient) { }
 
+  public getIPAddress()
+  {
+    return this.http.get("http://api.ipify.org/?format=json").toPromise();
+  }
+
   async getCategory(){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -36,6 +41,7 @@ export class Service {
   }
 
   async postOrder(order){
+    console.log(order);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -43,7 +49,6 @@ export class Service {
   }
 
   async postOrderDetail(od){
-    console.log(od);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
